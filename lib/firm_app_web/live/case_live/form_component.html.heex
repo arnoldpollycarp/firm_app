@@ -1,0 +1,116 @@
+<div>
+  <h2><%= @title %></h2>
+
+  
+  <.form
+    let={f}
+    for={@changeset}
+    id="case-form"
+    phx-target={@myself}
+    phx-change="validate"
+    phx-submit="save">
+  
+    <div class = "row">
+      <div class = "col-md-4 col-lg-4 col-sm-12 col-xs-12">
+        <div class="form-group row">
+          <%= label f, :title %>
+          <%= text_input f, :title %>
+          <%= error_tag f, :title %>
+        </div>
+      </div>
+  
+      <div class = "col-md-4 col-lg-4 col-sm-12 col-xs-12">
+        <div class="form-group row">
+          <%= label f, :client %>
+          <%= select f, :client_id, @client_list, class: "form-control" %>
+          <%= error_tag f, :client_id %>
+        </div>
+      </div>
+
+      <div class = "col-md-4 col-lg-4 col-sm-12 col-xs-12">
+        <div class="form-group row">
+          <%= label f, :reg_num %>
+          <%= text_input f, :reg_num %>
+          <%= error_tag f, :reg_num %>
+        </div>
+      </div>
+        
+      <div class = "col-md-4 col-lg-4 col-sm-12 col-xs-12">
+        <div class="form-group row"> 
+          <%= label f, :judge %>
+          <%= text_input f, :judge %>
+          <%= error_tag f, :judge %>
+        </div>
+      </div>
+
+      <div class = "col-md-4 col-lg-4 col-sm-12 col-xs-12">
+        <div class="form-group row"> 
+          <%= label f, :"Court Type" %>
+          <%= select f, :court, ["High Court", "Court Of Appeal", "District Court"], class: "form-control" %>
+          <%= error_tag f, :court %>
+        </div>
+      </div>
+  
+      <div class = "col-md-4 col-lg-4 col-sm-12 col-xs-12">
+        <div class="form-group row"> 
+          <%= label f, :court_no %>
+          <%= text_input f, :court_no %>
+          <%= error_tag f, :court_no %>
+        </div>
+      </div>
+  
+   
+      <div class = "col-md-4 col-lg-4 col-sm-12 col-xs-12">
+        <div class="form-group row">
+          <%= label f, :type %>
+          <%= select f, :type, ["Civil", "Criminal", "Bankruptcy"], class: "form-control" %>
+          <%= error_tag f, :type %>
+        </div>
+      </div>
+  
+      <div class = "col-md-4 col-lg-4 col-sm-12 col-xs-12">
+        <div class="form-group row">
+          <%= label f, :petitioner %>
+          <%= text_input f, :petitioner %>
+          <%= error_tag f, :petitioner %>
+        </div>
+      </div>
+  
+      <div class = "col-md-4 col-lg-4 col-sm-12 col-xs-12">
+        <div class="form-group row">
+          <%= label f, :respondent %>
+          <%= text_input f, :respondent %>
+          <%= error_tag f, :respondent %>
+        </div>
+      </div>
+  
+      <div class = "col-md-4 col-lg-4 col-sm-12 col-xs-12">
+        <div class="form-group row">
+          <%= label f, :next_date %>
+          <%= date_select f, :next_date, class: "form-control" %>
+          <%= error_tag f, :next_date %>
+        </div>
+      </div>
+  
+      <div class = "col-md-4 col-lg-4 col-sm-12 col-xs-12">
+        <div class="form-group row">
+          <%= label f, :lawyer %>
+          <%= text_input f, :lawyer %>
+          <%= error_tag f, :lawyer %>
+        </div>
+      </div>
+  
+      <div class = "col-md-4 col-lg-4 col-sm-12 col-xs-12">
+        <div class="form-group row">
+          <%= label f, :status %>
+          <%= select f, :status, ["INACTIVE", "ACTIVE"], class: "form-control" %>
+          <%= error_tag f, :status %>
+        </div>
+      </div>
+  
+    <div>
+      <%= submit "Save", class: "btn btn-inverse-success btn-fw", phx_disable_with: "Saving..." %>
+    </div>
+  </div>
+  </.form>
+</div>

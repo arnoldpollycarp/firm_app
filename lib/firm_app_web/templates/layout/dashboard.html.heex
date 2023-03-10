@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Metrica - Responsive Bootstrap 4 Admin Dashboard</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="A premium admin dashboard template by Mannatthemes" name="description" />
+        <meta content="Mannatthemes" name="author" />
+
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="../assets/images/favicon.ico">
+
+        <!-- App css -->
+        <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/css/bootstrap.min.css")}/>
+        <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/css/icons.css")}/>
+        <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/css/metisMenu.min.css")}/>
+        <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/css/style-2.css")}/>
+
+        <style>
+            @media (max-width: 980px) {
+              .hidden-mobile {
+                display: none;
+              }
+            }
+          </style>
+    </head>
+
+    <body>
+
+        <!-- Top Bar Start -->
+        <div class="topbar">
+
+            <!-- LOGO -->
+            <div class="topbar-left">
+                <a href="../crm/crm-index.html" class="logo">
+                    <span>
+                        <img src={Routes.static_path(@conn, "/images/logo-min.png")} alt="logo"/>
+                    </span>
+                    <span class = "hidden-mobile" style="font-weight: bolder; font-size: medium">
+                    Villiant Advocates
+                    </span>
+                </a>
+            </div>
+            <!--end logo--> 
+            <!-- Navbar -->
+            <nav class="navbar-custom">    
+                <ul class="list-unstyled topbar-nav float-right mb-0"> 
+                    <li class="dropdown notification-list">
+                        <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect" data-toggle="dropdown" href="#" role="button"
+                            aria-haspopup="false" aria-expanded="false">
+                            <i class="dripicons-bell noti-icon"></i>
+                            <span class="badge badge-danger badge-pill noti-icon-badge">0</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-lg">
+                            <!-- item-->
+                            <h6 class="dropdown-item-text">
+                                Notifications (0)
+                            </h6>
+                            <div class="slimscroll notification-list">
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item active">
+                                    <div class="notify-icon bg-success"><i class="mdi mdi-cart-outline"></i></div>
+                                    <p class="notify-details">Your order is placed<small class="text-muted">Dummy text of the printing and typesetting industry.</small></p>
+                                </a>
+                            </div>
+                            <!-- All-->
+                            <a href="javascript:void(0);" class="dropdown-item text-center text-primary">
+                                View all <i class="fi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </li>
+
+                    <li class="dropdown">
+                        <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button"
+                            aria-haspopup="false" aria-expanded="false">
+                            <%= if is_nil(@current_user.image) do %>
+                            <img src={Routes.static_path(@conn, "/images/user.png")} alt="profile-user" class="rounded-circle"/>
+                            <% end %> 
+                            <span class="ml-1 nav-user-name hidden-sm"><%= @current_user.firstname %><i class="mdi mdi-chevron-down"></i> </span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="#"><i class="dripicons-user text-muted mr-2"></i> Profile</a>
+                            <a class="dropdown-item" href="#"><i class="dripicons-lock text-muted mr-2"></i> Help</a>
+                            <div class="dropdown-divider"></div>
+                            <span class="dropdown-item">
+                              <i class="dripicons-exit text-muted mr-2"></i> 
+                              <%= link "logout", to: Routes.user_session_path(@conn, :delete),method: "delete"%>
+                            </span>
+                        </div>
+                    </li>
+                </ul><!--end topbar-nav-->
+    
+                <ul class="list-unstyled topbar-nav mb-0">                        
+                    <li>
+                        <button class="button-menu-mobile nav-link waves-effect waves-light">
+                            <i class="dripicons-menu nav-icon"></i>
+                        </button>
+                    </li>
+                    <li class="hide-phone app-search">
+                        <form role="search" class="">
+                            <input type="text" placeholder="Search..." class="form-control">
+                            <a href=""><i class="fas fa-search"></i></a>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+            <!-- end navbar-->
+        </div>
+        <!-- Top Bar End -->
+
+        <div class="page-wrapper">
+            <!-- Left Sidenav -->
+            <div class="left-sidenav">
+                <ul class="metismenu left-sidenav-menu">
+                    <li>
+                        <a href={Routes.dashboard_path(@conn, :index)} ><i class="ti-palette"></i><span>Dashboard</span></a>                        
+                    </li>
+
+                    <li>
+                        <a href={Routes.case_path(@conn, :index)} ><i class="ti-files"></i><span>Cases</span></a>                        
+                    </li>
+                </ul>
+            </div>
+            <!-- end left-sidenav-->
+
+            <!-- Page Content-->
+            <div class="page-content">
+
+                <div class="container-fluid">
+                    <!-- end page title end breadcrumb -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="accordion" id="Customers_collapse">
+                                <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+                                <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+                                <%= @inner_content %>
+                            </div><!--end Customers_collapse-->
+                        </div><!--end col-->
+                    </div><!--end row-->
+
+                </div><!-- container -->
+
+                <footer class="footer text-center text-sm-left">
+                    &copy; <script> document.write(new Date().getFullYear())</script> Villiant Advocates <span class="text-muted d-none d-sm-inline-block float-right">Crafted with <i class="mdi mdi-heart text-danger"></i> by <a href="https://gtinscan.org/">GtinScanIT</a></span>
+                </footer><!--end footer-->
+            </div>
+            <!-- end page content -->
+        </div>
+        <!-- end page-wrapper -->
+
+        <!-- jQuery  -->
+        <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/js/jquery.min.js")}></script>
+        <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/js/bootstrap.bundle.min.js")}></script>
+        <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/js/metisMenu.min.js")}></script>
+        <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/js/waves.min.js")}></script>
+        <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/js/jquery.slimscroll.min.js")}></script>
+        <!-- App js -->
+        <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/js/app.js")}></script>
+
+    </body>
+</html>

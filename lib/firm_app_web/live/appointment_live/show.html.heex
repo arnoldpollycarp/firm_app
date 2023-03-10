@@ -1,0 +1,56 @@
+<h1>Show Appointment</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.appointment_show_path(@socket, :show, @appointment)}>
+    <.live_component
+      module={FirmAppWeb.AppointmentLive.FormComponent}
+      id={@appointment.id}
+      title={@page_title}
+      action={@live_action}
+      appointment={@appointment}
+      return_to={Routes.appointment_show_path(@socket, :show, @appointment)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Client:</strong>
+    <%= @appointment.client_id %>
+  </li>
+
+  <li>
+    <strong>Date:</strong>
+    <%= @appointment.date %>
+  </li>
+
+  <li>
+    <strong>Time:</strong>
+    <%= @appointment.time %>
+  </li>
+
+  <li>
+    <strong>With:</strong>
+    <%= @appointment.with %>
+  </li>
+
+  <li>
+    <strong>Reason:</strong>
+    <%= @appointment.reason %>
+  </li>
+
+  <li>
+    <strong>Status:</strong>
+    <%= @appointment.status %>
+  </li>
+
+  <li>
+    <strong>Place:</strong>
+    <%= @appointment.place %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.appointment_show_path(@socket, :edit, @appointment), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.appointment_index_path(@socket, :index) %></span>

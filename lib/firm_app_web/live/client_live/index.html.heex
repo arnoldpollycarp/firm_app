@@ -1,0 +1,67 @@
+<h1>List Users</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.client_index_path(@socket, :index)}>
+    <.live_component
+      module={FirmAppWeb.ClientLive.FormComponent}
+      id={@client.id || :new}
+      title={@page_title}
+      action={@live_action}
+      client={@client}
+      return_to={Routes.client_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<div class="row">
+  <div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <span><%= live_patch "New User", to: Routes.client_index_path(@socket, :new), class: "btn btn-inverse-success btn-fw", style: "font-size: 0.875rem;" %></span>
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <td>Image</td>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>User Type</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+              <tbody id="client">
+                <%= for client <- @client_collection do %>
+                  <tr id={"client-#{client.id}"}>
+                    <td class="py-1">
+                      <img src="images/faces/face7.jpg" alt="image"/>
+                    </td>
+                    <td><%= client.firstname %></td>
+                    <td><%= client.lastname %></td>
+                    <td><%= client.email %></td>
+                    <td><%= client.phone %></td>
+                    <td><%= client.usertype %></td>
+                    <td>
+                      <%= if client.status == "ACTIVE" do %>
+                        <button class = "btn btn-inverse-success btn-fw">ACTIVE</button>
+                      <% else %>
+                        <button class = "btn btn-inverse-danger btn-fw">INACTIVE</button>
+                      <% end %>
+                    </td>
+            
+                    <td>
+                      <span><%= live_redirect "", to: Routes.client_show_path(@socket, :show, client), class: "mdi mdi-magnify-plus", style: "font-size: 15px;" %></span>
+                      <span><%= live_patch "", to: Routes.client_index_path(@socket, :edit, client), class: "mdi mdi-lead-pencil", style: "margin-left: 10%; margin-right: 10%; font-size: 15px; color: #00d082;"  %></span>
+                      <span><%= link "", to: "#", phx_click: "delete", phx_value_id: client.id, data: [confirm: "Are you sure?"], class: "mdi mdi-delete", style: "font-size: 15px; color: red;" %></span>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

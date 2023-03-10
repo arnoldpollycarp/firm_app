@@ -1,0 +1,57 @@
+<div class = "phx-modal">
+    <div class = "phx-modal-content" style = "width: 40%">
+    <.form
+    let={f}
+    for={@changeset}
+    id="file-upload"
+    phx-target={@myself}
+    phx-change="valiate"
+    phx-submit="save">
+    <div class = "row">
+      <div class = "col-md-12 col-lg-12 col-sm-12 col-xs-12">
+        <div class="form-group row">
+          <%= label f, :"File Name" %>
+          <%= text_input f, :name %>
+          <%= hidden_input f, :case_id, value: @case.id %>
+          <%= hidden_input f, :user_id, value: assigns.user.id %>
+          <%= error_tag f, :name %>
+        </div>
+      </div>
+
+      <div class = "col-md-12 col-lg-12 col-sm-12 col-xs-12">
+      <div class="form-group row">
+
+          <%= live_file_input @uploads.photo %>
+          <% IO.inspect @uploads.photo
+             IO.inspect @myself %>
+      
+
+  <%= for entry <- @uploads.photo.entries do %>
+
+    <div class="row">
+      <div class="column">
+        <%= live_img_preview entry, height: 100%>
+      </div>
+      <div class="column">
+        <progress max="100" value={entry.progress} />
+      </div>
+      <div class="column">
+        <h4><a href="#" phx-click="cancel-entry" phx-value-ref={entry.ref} phx-target={@myself}>Cancel</a></h4>
+      </div>
+    </div>
+  <% end %>
+
+      <div class = "col-md-12 col-lg-12 col-sm-12 col-xs-12">
+        Add Upto <%= @uploads.photo.max_entries %> Files (Of Size <%= @uploads.photo.max_file_size / 1_000_000 %> MB)
+      </div>
+      </div>
+      </div>
+
+    </div>
+
+    <div>
+      <%= submit "Save", class: "btn btn-inverse-success btn-fw",phx_disable_with: "Saving..." %>
+    </div>
+    </.form>
+    </div>
+  </div>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Spica Admin</title>
+  <!-- base:css -->
+  <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/css/materialdesignicons.min.css")}/>
+  <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/css/vendor.bundle.base.css")}/>
+  <!-- endinject -->
+  <!-- plugin css for this page -->
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/css/style.css")}/>
+  <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
+  <!-- endinject -->
+  <link rel="shortcut icon" href="../../images/agave.png" />
+</head>
+
+<body>
+  <div class="container-scroller d-flex">
+    <div class="container-fluid page-body-wrapper full-page-wrapper d-flex">
+      <div class="content-wrapper d-flex align-items-stretch auth auth-img-bg">
+        <div class="row flex-grow">
+          <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+            <%= @inner_content %>
+          <div class="col-lg-6 login-half-bg d-none d-lg-flex flex-row">
+            <p class="text-white font-weight-medium text-center flex-grow align-self-end">Copyright &copy; 2018  All rights reserved.</p>
+          </div>
+        </div>
+      </div>
+      <!-- content-wrapper ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+  <!-- base:js -->
+  <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
+  <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/js/vendor.bundle.base.js")}></script>
+  <!-- endinject -->
+  <!-- inject:js -->
+  <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/js/template.js")}></script>
+  <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/js/hoverable-collapse.js")}></script>
+  <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/js/off-canvas.js")}></script>
+  <!-- endinject -->
+</body>
+
+</html>

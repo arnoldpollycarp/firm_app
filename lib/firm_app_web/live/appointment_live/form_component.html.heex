@@ -1,0 +1,77 @@
+<div>
+  <h2><%= @title %></h2>
+
+  <.form
+    let={f}
+    for={@changeset}
+    id="appointment-form"
+    phx-target={@myself}
+    phx-change="validate"
+    phx-submit="save">
+  
+    <div class = "row">
+      <div class = "col-md-6 col-lg-6 col-sm-12 col-xs-12">
+        <div class="form-group row">
+          <%= label f, :Inviter %>
+          <%= select f, :client_id, @list_inviters,class: "form-control" %>
+          <%= error_tag f, :client_id %>
+        </div>
+      </div>
+
+    <div class = "col-md-6 col-lg-6 col-sm-12 col-xs-12">
+      <div class="form-group row">
+        <%= label f, :"Invitee" %>
+        <%= select f, :with, @lawyer_list,class: "form-control" %>
+        <%= error_tag f, :with %>
+      </div>
+    </div>
+
+    <div class = "col-md-4 col-lg-4 col-sm-12 col-xs-12">
+      <div class="form-group row">
+        <%= label f, :reason %>
+        <%= text_input f, :reason, class: "form-control" %>
+        <%= error_tag f, :reason %>
+      </div>
+      </div>
+  
+    
+    <div class = "col-md-4 col-lg-4 col-sm-12 col-xs-12">
+      <div class="form-group row">
+        <%= label f, :"Time" %>
+        <%= time_input f, :time, class: "form-control" %>
+        <%= error_tag f, :time %>
+    </div>
+    </div>
+
+    <div class = "col-md-4 col-lg-4 col-sm-12 col-xs-12">
+      <div class="form-group row">
+      <%= label f, :date %>
+      <%= date_select f, :date, class: "form-control" %>
+      <%= error_tag f, :date %>
+      </div>
+    </div>
+
+
+      <div class = "col-md-4 col-lg-4 col-sm-12 col-xs-12">
+        <div class="form-group row">
+          <%= label f, :place %>
+          <%= text_input f, :place, class: "form-control" %>
+          <%= error_tag f, :place %>
+        </div>
+        </div>
+  
+        <div class = "col-md-4 col-lg-4 col-sm-12 col-xs-12">
+          <div class="form-group row">
+            <%= label f, :status %>
+            <%= text_input f, :status, class: "form-control" %>
+            <%= error_tag f, :status %>
+          </div>
+          </div>
+
+  </div>
+  
+    <div>
+      <%= submit "Save", class: "btn btn-inverse-success btn-fw", phx_disable_with: "Saving..." %>
+    </div>
+  </.form>
+</div>

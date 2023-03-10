@@ -1,0 +1,108 @@
+    <div class="col-lg-6 d-flex align-items-center justify-content-center">
+      <div class="auth-form-transparent text-left p-3">
+        <div class="brand-logo">
+          <img src="../../images/logotest.png" alt="logo" style = "width: 100px">
+        </div>
+        <h4>New here?</h4>
+        <h6 class="font-weight-light">Join us today! It takes only few steps</h6>
+        <.form let={f} for={@changeset} action={Routes.user_registration_path(@conn, :create)}>
+          <%= if @changeset.action do %>
+            <div class="alert alert-danger">
+              <p>Oops, something went wrong! Please check the errors below.</p>
+            </div>
+          <% end %>
+          <div class="form-group">
+            <label>First Name</label>
+            <div class="input-group">
+              <div class="input-group-prepend bg-transparent">
+                <span class="input-group-text bg-transparent border-right-0">
+                  <i class="mdi mdi-account-outline text-primary"></i>
+                </span>
+              </div>
+              <%= text_input f, :firstname, required: true, class: "form-control form-control-lg border-left-0", placeholder: "First Name" %>
+              <%= error_tag f, :firstname %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Last Name</label>
+            <div class="input-group">
+              <div class="input-group-prepend bg-transparent">
+                <span class="input-group-text bg-transparent border-right-0">
+                  <i class="mdi mdi-account-outline text-primary"></i>
+                </span>
+              </div>
+              <%= text_input f, :lastname, required: true, class: "form-control form-control-lg border-left-0", placeholder: "Last Name" %>
+              <%= error_tag f, :lastname %>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label>Email</label>
+            <div class="input-group">
+              <div class="input-group-prepend bg-transparent">
+                <span class="input-group-text bg-transparent border-right-0">
+                  <i class="mdi mdi-email-outline text-primary"></i>
+                </span>
+              </div>
+              <%= email_input f, :email, required: true, class: "form-control form-control-lg border-left-0", placeholder: "Email" %>
+              <%= error_tag f, :email %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Phone</label>
+            <div class="input-group">
+              <div class="input-group-prepend bg-transparent">
+                <span class="input-group-text bg-transparent border-right-0">
+                  <i class="mdi mdi-phone text-primary"></i>
+                </span>
+              </div>
+              <%= text_input f, :phone, required: true, class: "form-control form-control-lg border-left-0", placeholder: "Phone" %>
+              <%= error_tag f, :phone %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Password</label>
+            <div class="input-group">
+              <div class="input-group-prepend bg-transparent">
+                <span class="input-group-text bg-transparent border-right-0">
+                  <i class="mdi mdi-lock-outline text-primary"></i>
+                </span>
+              </div>
+              <%= password_input f, :hashed_password, required: true, class: "form-control form-control-lg border-left-0", id: "exampleInputPassword", placeholder: "Password" %>
+              <%= error_tag f, :hashed_password %>                     
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Comfirm Password</label>
+            <div class="input-group">
+              <div class="input-group-prepend bg-transparent">
+                <span class="input-group-text bg-transparent border-right-0">
+                  <i class="mdi mdi-lock-outline text-primary"></i>
+                </span>
+              </div>
+              <%= password_input f, :password_confirmation, required: true, class: "form-control form-control-lg border-left-0", id: "exampleInputPassword", placeholder: "Password" %>
+              <%= error_tag f, :password_confirmation %>                     
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <div class="form-check">
+              <label class="form-check-label text-muted">
+                <%= checkbox f, :remember_me %>
+                I agree to all Terms & Conditions
+              </label>
+            </div>
+          </div>
+          <div class="mt-3">
+            <%= submit "Register", class: "btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" %>
+          </div>
+          <div class="text-center mt-4 font-weight-light">
+            Already have an account? <%= link "Log in", to: Routes.user_session_path(@conn, :new), class: "text-primary" %>
+          </div>
+        </.form>
+      </div>
+    </div>

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Spica Admin</title>
+  <!-- base:css -->
+  <link href={Routes.static_path(@socket, "/css/materialdesignicons.min.css") } rel="stylesheet" />
+  <link href={Routes.static_path(@socket, "/css/vendor.bundle.base.css") } rel="stylesheet" />
+  <!-- endinject -->
+  <!-- plugin css for this page -->
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link href={Routes.static_path(@socket, "/css/style.css") } rel="stylesheet" />
+  <link href={Routes.static_path(@socket, "/css/w3.css") } rel="stylesheet" />
+  <!-- endinject -->
+  <link rel="shortcut icon" href= {Routes.static_path(@socket, "/images/agave.png")} />
+  <style>
+    .menu-title .menu-icon {
+      font-size: 14px !important;
+    }
+  </style>
+</head>
+<body>
+  <div class="container-scroller d-flex">
+    <!-- partial:./partials/_sidebar.html -->
+    <nav class="sidebar sidebar-offcanvas" id="sidebar">
+      <ul class="nav">
+        <li class="nav-item sidebar-category" style="margin-bottom: 2.5rem">
+          <p style = "font-size: 35px">Navigation</p>
+          <span></span>
+        </li>
+        <li class="nav-item">
+          <span class="nav-link">
+            <i class="mdi mdi-view-quilt menu-icon" style = "font-size: 14px !important;"></i>
+            <%= live_redirect "Dashboard", to: Routes.admin_dashboard_path(@socket, :index), class: "menu-title", style: "font-size: 14px !important;" %>
+            <div class="badge badge-info badge-pill">2</div>
+          </span>
+        </li>
+
+        <li class="nav-item">
+          <span class="nav-link">
+            <i class="mdi mdi-gavel menu-icon" style = "font-size: 14px !important;"></i>
+            <%= live_redirect "Cases", to: Routes.case_index_path(@socket, :index), class: "menu-title", style: "font-size: 14px !important;" %>
+            <div class="badge badge-info badge-pill">2</div>
+          </span>
+        </li>
+
+        <li class="nav-item">
+          <span class="nav-link">
+            <i class="mdi mdi-timer  menu-icon" style = "font-size: 14px !important;"></i>
+            <%= live_redirect "Appointments", to: Routes.appointment_index_path(@socket, :index), class: "menu-title", style: "font-size: 14px !important;" %>
+            <div class="badge badge-info badge-pill">2</div>
+          </span>
+        </li>
+
+        <li class="nav-item">
+          <span class="nav-link">
+            <i class="mdi  mdi mdi-account-multiple-plus menu-icon" style = "font-size: 14px !important;"></i>
+            <%= live_redirect "Users", to: Routes.client_index_path(@socket, :index), class: "menu-title", style: "font-size: 14px !important;" %>
+            <div class="badge badge-info badge-pill">2</div>
+          </span>
+        </li>
+
+        <li class="nav-item">
+          <span class="nav-link">
+            <i class="mdi mdi-clipboard-check menu-icon" style = "font-size: 14px !important;"></i>
+            <%= live_redirect "Vendor", to: Routes.vendor_index_path(@socket, :index), class: "menu-title", style: "font-size: 14px !important;" %>
+            <div class="badge badge-info badge-pill">2</div>
+          </span>
+        </li>
+
+        <li class="nav-item">
+          <span class="nav-link">
+            <i class="mdi mdi-pencil-box-outline menu-icon" style = "font-size: 14px !important;"></i>
+            <%= live_redirect "Tasks", to: Routes.task_index_path(@socket, :index), class: "menu-title", style: "font-size: 14px !important;" %>
+            <div class="badge badge-info badge-pill">2</div>
+          </span>
+        </li>
+
+      </ul>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:./partials/_navbar.html -->
+      <nav class="navbar col-lg-12 col-12 px-0 py-0 py-lg-4 d-flex flex-row">
+        <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+          <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+            <span class="mdi mdi-menu"></span>
+          </button>
+          <div class="navbar-brand-wrapper">
+            <a class="navbar-brand brand-logo" href="index.html"><img src={Routes.static_path(@socket, "/images/logotest.png")} alt="logo"/></a>
+            <a class="navbar-brand brand-logo-mini" href="index.html"><img src={Routes.static_path(@socket, "/images/logo-mini.svg")} alt="logo"/></a>
+          </div>
+          <h4 class="font-weight-bold mb-0 d-none d-md-block mt-1" style = "font-size: 20px;">Welcome back, First Last</h4>
+          <ul class="navbar-nav navbar-nav-right">
+            <li class="nav-item">
+              <h4 class="mb-0 font-weight-bold d-none d-xl-block"><%= Date.utc_today %></h4>
+            </li>
+            <li class="nav-item dropdown mr-1">
+              <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center" id="messageDropdown" href="#" data-toggle="dropdown">
+                <i class="mdi mdi-calendar mx-0" style = "font-size: 25px;"></i>
+                <span class="count bg-info">2</span>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown">
+                <p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
+                <a class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                      <img src={Routes.static_path(@socket, "/images/faces/face4.jpg")} alt="image" class="profile-pic">
+                  </div>
+                  <div class="preview-item-content flex-grow">
+                    <h6 class="preview-subject ellipsis font-weight-normal">David Grey
+                    </h6>
+                    <p class="font-weight-light small-text text-muted mb-0">
+                      The meeting is cancelled
+                    </p>
+                  </div>
+                </a>
+                <a class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                      <img src={Routes.static_path(@socket, "/images/faces/face2.jpg")} alt="image" class="profile-pic">
+                  </div>
+                  <div class="preview-item-content flex-grow">
+                    <h6 class="preview-subject ellipsis font-weight-normal">Tim Cook
+                    </h6>
+                    <p class="font-weight-light small-text text-muted mb-0">
+                      New product launch
+                    </p>
+                  </div>
+                </a>
+                <a class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                      <img src={Routes.static_path(@socket, "/images/faces/face3.jpg")} alt="image" class="profile-pic">
+                  </div>
+                  <div class="preview-item-content flex-grow">
+                    <h6 class="preview-subject ellipsis font-weight-normal"> Johnson
+                    </h6>
+                    <p class="font-weight-light small-text text-muted mb-0">
+                      Upcoming board meeting
+                    </p>
+                  </div>
+                </a>
+              </div>
+            </li>
+            <li class="nav-item dropdown mr-2">
+              <a class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center" id="notificationDropdown" href="#" data-toggle="dropdown">
+                <i class="mdi mdi-email-open mx-0" style = "font-size: 25px;"></i>
+                <span class="count bg-danger">1</span>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
+                <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
+                <a class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                    <div class="preview-icon bg-success">
+                      <i class="mdi mdi-information mx-0"></i>
+                    </div>
+                  </div>
+                  <div class="preview-item-content">
+                    <h6 class="preview-subject font-weight-normal">Application Error</h6>
+                    <p class="font-weight-light small-text mb-0 text-muted">
+                      Just now
+                    </p>
+                  </div>
+                </a>
+                <a class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                    <div class="preview-icon bg-warning">
+                      <i class="mdi mdi-settings mx-0"></i>
+                    </div>
+                  </div>
+                  <div class="preview-item-content">
+                    <h6 class="preview-subject font-weight-normal">Settings</h6>
+                    <p class="font-weight-light small-text mb-0 text-muted">
+                      Private message
+                    </p>
+                  </div>
+                </a>
+                <a class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                    <div class="preview-icon bg-info">
+                      <i class="mdi mdi-account-box mx-0"></i>
+                    </div>
+                  </div>
+                  <div class="preview-item-content">
+                    <h6 class="preview-subject font-weight-normal">New user registration</h6>
+                    <p class="font-weight-light small-text mb-0 text-muted">
+                      2 days ago
+                    </p>
+                  </div>
+                </a>
+              </div>
+            </li>
+          </ul>
+          <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+            <span class="mdi mdi-menu" style = "font-size: 25px;"></span>
+          </button>
+        </div>
+        <div class="navbar-menu-wrapper navbar-search-wrapper d-none d-lg-flex align-items-center">
+          <ul class="navbar-nav mr-lg-2">
+            <li class="nav-item nav-search d-none d-lg-block">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search Here..." aria-label="search" aria-describedby="search">
+              </div>
+            </li>
+          </ul>
+          <ul class="navbar-nav navbar-nav-right">
+            <li class="nav-item nav-profile dropdown">
+              <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown" style="font-size: 2rem;">
+                <img src={Routes.static_path(@socket, "/images/faces/face5.jpg")} style="width: 4.187rem; height: 4.187rem; border-radius: 2.25rem;" alt="profile"/>
+                <span class="nav-profile-name" style="font-size: 0.875rem;">First LLast</span>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+                <a class="dropdown-item" style="font-size: 1.875rem;">
+                  <i class="mdi mdi-face text-primary"></i>
+                  Profile
+                </a>
+                <span class="dropdown-item" style="font-size: 1.875rem;">
+                  <i class="mdi mdi-logout text-primary"></i>
+                  <%= link "logout", to: Routes.user_session_path(@socket, :delete),method: "delete"%>
+                </span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+          
+          <!-- row end -->
+          <main class="container" style = "max-width: 100%;">
+            <p class="alert alert-info" role="alert"
+              phx-click="lv:clear-flash"
+              phx-value-key="info"><%= live_flash(@flash, :info) %></p>
+          
+            <p class="alert alert-danger" role="alert"
+              phx-click="lv:clear-flash"
+              phx-value-key="error"><%= live_flash(@flash, :error) %></p>
+          
+            <%= @inner_content %>
+          </main>
+          <!-- row end -->
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:./partials/_footer.html -->
+        <footer class="footer">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © bootstrapdash.com 2020</span>
+                <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Distributed By: <a href="https://www.themewagon.com/" target="_blank">ThemeWagon</a></span>
+                <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Free <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap dashboard templates</a> from Bootstrapdash.com</span>
+              </div>
+            </div>
+          </div>
+        </footer>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+
+  <!-- base:js -->
+  <script defer phx-track-static type="text/javascript" src={Routes.static_path(@socket, "/assets/app.js") }></script>
+  <script defer phx-track-static type="text/javascript" src={Routes.static_path(@socket, "/js/vendor.bundle.base.js") }></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page-->
+  <script defer phx-track-static type="text/javascript" src={Routes.static_path(@socket, "/js/Chart.min.js") }></script>
+  <!-- End plugin js for this page-->
+  <!-- inject:js -->
+  <script defer phx-track-static type="text/javascript" src={Routes.static_path(@socket, "/js/template.js") }></script>
+  <script defer phx-track-static type="text/javascript" src={Routes.static_path(@socket, "/js/hoverable-collapse.js") }></script>
+  <script defer phx-track-static type="text/javascript" src={Routes.static_path(@socket, "/js/off-canvas.js") }></script>
+  <!-- endinject -->
+  <!-- plugin js for this page -->
+  <!-- End plugin js for this page -->
+  <!-- Custom js for this page-->
+  <script defer phx-track-static type="text/javascript" src={Routes.static_path(@socket, "/js/dashboard.js") }></script>
+  <!-- End custom js for this page-->
+  <script>
+    function openCity(cityName) {
+      var i;
+      var x = document.getElementsByClassName("city");
+      for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";  
+      }
+      document.getElementById(cityName).style.display = "block";  
+    }
+    </script>
+</body>
+
+</html>
