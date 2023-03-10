@@ -26,14 +26,14 @@ config :firm_app, FirmAppWeb.Endpoint,
 # at the `config/runtime.exs`.
 # config :firm_app, FirmApp.Mailer,
 #  adapter: Swoosh.Adapters.Mailgun,
-#  api_key: "0923a813b77b086d166b63e0e1f56dec-c27bf672-bd2f69db",
-#  domain: "https://api.mailgun.net/v3/sandbox6e397e1d2cdd462fa96948f37136f861.mailgun.org"
+#  api_key: "",
+#  domain: ""
 # # Swoosh API client is needed for adapters other than SMTP.
 # config :swoosh, :api_client, Swoosh.ApiClient.Hackney
 
 config :firm_app,
-       mailgun_domain: "https://api.mailgun.net/v3/sandbox6e397e1d2cdd462fa96948f37136f861.mailgun.org",
-       mailgun_key: "0923a813b77b086d166b63e0e1f56dec-c27bf672-bd2f69db"
+       mailgun_domain: "",
+       mailgun_key: ""
 
 # Configure esbuild (the version is required)
 config :esbuild,
